@@ -1,0 +1,7 @@
+go-shadowsocks2:
+  build: Dockerfile
+  image: dfang/go-shadowsocks2
+  # pre:
+  #   - echo "Preparing go-shadowsocks2"
+  # post:
+  #   - echo "Finished go-shadowsocks2"
