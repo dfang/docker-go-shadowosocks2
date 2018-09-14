@@ -9,10 +9,10 @@ FROM alpine
 WORKDIR /app
 COPY --from=builder /go/bin/go-shadowsocks2 /app/
 ENTRYPOINT ["./go-shadowsocks2"]
+EXPOSE 12222
 
-ENV CIPHER=aes-128-cfb
-ENV PASSWORD=pa$$w0rd
-ENV PORT=12222
-
+# ENV CIPHER=aes-128-cfb
+# ENV PASSWORD=pa$$w0rd
+# ENV PORT=12222
 # CMD ["sh", "-c", "./go-shadowsocks2 -s 'ss://$CIPHER:$PASSWORD@:$PORT' -verbose"]
 CMD ["-h"]
