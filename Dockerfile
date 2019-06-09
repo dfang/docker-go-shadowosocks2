@@ -5,14 +5,14 @@ RUN apk add --no-cache git
 RUN go get -u -v github.com/shadowsocks/go-shadowsocks2
 
 # Final stage
-FROM alpine
-WORKDIR /app
-COPY --from=builder /go/bin/go-shadowsocks2 /app/
-ENTRYPOINT ["./go-shadowsocks2"]
-EXPOSE 12222
+FROM alpine:3.9.4
+COPY --from=builder /go/bin/go-shadowsocks2 /usr/local/bin/
+ENTRYPOINT ["go-shadowsocks2"]
 
-# ENV CIPHER=aes-128-cfb
-# ENV PASSWORD=pa$$w0rd
-# ENV PORT=12222
-# CMD ["sh", "-c", "./go-shadowsocks2 -s 'ss://$CIPHER:$PASSWORD@:$PORT' -verbose"]
-CMD ["-h"]
+ENV CIPHER=CHACHA20-IETF
+ENV PASSWORD=secret
+ENV PORT=12222
+EXPOSE ${PORT}
+
+# CMD ["-h"]
+CMD ["sh", "-c", "go-shadowsocks2 -s ss://${CIPHER}:${PASSWORD}@:${PORT} -verbose"]
