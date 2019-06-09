@@ -7,7 +7,7 @@ RUN go get -u -v github.com/shadowsocks/go-shadowsocks2
 # Final stage
 FROM alpine:3.9.4
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/local/bin/
-ENTRYPOINT ["go-shadowsocks2"]
+# ENTRYPOINT ["go-shadowsocks2"]
 
 ENV CIPHER=CHACHA20-IETF
 ENV PASSWORD=secret
